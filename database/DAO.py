@@ -26,7 +26,7 @@ class DAO():
         cursor = conn.cursor(dictionary=True)
         query = """select distinct gp.Product_brand
                     from go_products gp 
-                    order by gp.Product_brand asc """
+                    order by gp.Product_brand """
         result = []
         cursor.execute(query)
         for row in cursor:
@@ -50,6 +50,8 @@ class DAO():
         conn.close()
         return result
 
+
 if __name__ == "__main__":
     print(DAO.getAnni())
     print(DAO.getRetailers())
+    print(DAO.getBrands())

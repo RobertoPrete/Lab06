@@ -3,13 +3,19 @@ from database.DAO import DAO
 
 class Model:
     def __init__(self):
-        pass
+        self.listaAnni = None
+        self.listaBrands = None
+        self.listaRetailers = None
+
+        self.getAnni()
+        self.getBrands()
+        self.getRetailers()
 
     def getAnni(self):
-        return DAO.getAnni()
+        self.listaAnni = DAO.getAnni()
 
     def getBrands(self):
-        return DAO.getBrands()
+        self.listaBrands = DAO.getBrands()
 
     def getRetailers(self):
-        return DAO.getRetailers()
+        self.listaRetailers = DAO.getRetailers()
