@@ -26,8 +26,8 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         # Row1: inserire dd_anno, dd_brand, dd_retailer
-        self.dd_anno = ft.Dropdown(label="anno", options=[ft.dropdown.Option("Nessun filtro")], width=300)
-        self.dd_brand = ft.Dropdown(label="brand", options=[ft.dropdown.Option("Nessun filtro")], width=300)
+        self.dd_anno = ft.Dropdown(label="anno", options=[ft.dropdown.Option("Nessun filtro")], width=300, on_click=self._controller.read_anno, on_change=self._controller.read_anno)
+        self.dd_brand = ft.Dropdown(label="brand", options=[ft.dropdown.Option("Nessun filtro")], width=300, on_click=self._controller.read_brand, on_change=self._controller.read_brand)
         self.dd_retailer = ft.Dropdown(label="retailer", options=[ft.dropdown.Option("Nessun filtro")], width=550)
         row1 = ft.Row([self.dd_anno, self.dd_brand, self.dd_retailer], alignment=ft.MainAxisAlignment.START)
         self._page.controls.append(row1)
