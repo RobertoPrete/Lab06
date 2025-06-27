@@ -43,3 +43,10 @@ class Controller:
 
     def read_anno(self, e):
         self._brand = e.control.data
+
+    def handleTopVendite(self, e):
+        topvendite = self._model.top_vendite(self._anno, self._brand, self._retailer)
+        for x in topvendite:
+            self._view.txt_result.controls.append(ft.Text(x.__str__()))
+        self._view.update_page()
+

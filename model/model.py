@@ -19,3 +19,11 @@ class Model:
 
     def getRetailers(self):
         self.listaRetailers = DAO.getRetailers()
+
+    def top_vendite(self, anno, brand, retailer):
+        if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer is None or retailer == "" or retailer == "Nessun filtro"):
+            topVendite = DAO.getTopVendite1()
+        return topVendite
+
+
+

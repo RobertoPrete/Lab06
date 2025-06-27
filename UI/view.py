@@ -35,7 +35,7 @@ class View(ft.UserControl):
         self._controller.fillDD()
 
         # Row2: inserire btn_top_vendite e btn_analizza_vendite
-        self.btn_top_vendite = ft.ElevatedButton(text="Top vendite")
+        self.btn_top_vendite = ft.ElevatedButton(text="Top vendite", on_click=self._controller.handleTopVendite)
         self.btn_analizza_vendite = ft.ElevatedButton(text="Analizza vendite")
         row2 = ft.Row([self.btn_top_vendite, self.btn_analizza_vendite],
                       alignment=ft.MainAxisAlignment.CENTER)
