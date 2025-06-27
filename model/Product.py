@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-def Product():
+class Product:
     Product_number: int
     Product_line: str
     Product_type: str

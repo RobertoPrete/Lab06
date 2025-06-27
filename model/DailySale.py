@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 @dataclass
-def DailySale():
+class DailySale:
     Retailer_code: int
     Product_number: int
     Order_method_code: int
