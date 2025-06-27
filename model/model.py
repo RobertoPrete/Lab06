@@ -29,12 +29,12 @@ class Model:
         TopVendite3: le top vendite date nel caso in cui vengono selezionati tutti i filtri (anno, brand e retailer)
 
         """
-        topVendite = []
+        topVendite = None
         if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer is None or retailer == "" or retailer == "Nessun filtro"):
             topVendite = DAO.getTopVendite1()
         if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer is None or retailer == "" or retailer == "Nessun filtro"):
             topVendite = DAO.getTopVendite2(anno)
-        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" or brand != "Nessun filtro") and (retailer is not None or retailer != "" or retailer != "Nessun filtro"):
+        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer is not None and retailer != "" and retailer != "Nessun filtro"):
             topVendite = DAO.getTopVendite3(anno, brand, retailer)
         return topVendite
 
