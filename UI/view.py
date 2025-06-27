@@ -26,11 +26,13 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         # Row1: inserire dd_anno, dd_brand, dd_retailer
-        self.dd_anno = ft.Dropdown(label="anno", options=[], width=300)
-        self.dd_brand = ft.Dropdown(label="brand", options=[], width=300)
-        self.dd_retailer = ft.Dropdown(label="retailer", options=[], width=550)
+        self.dd_anno = ft.Dropdown(label="anno", options=[ft.dropdown.Option("Nessun filtro")], width=300)
+        self.dd_brand = ft.Dropdown(label="brand", options=[ft.dropdown.Option("Nessun filtro")], width=300)
+        self.dd_retailer = ft.Dropdown(label="retailer", options=[ft.dropdown.Option("Nessun filtro")], width=550)
         row1 = ft.Row([self.dd_anno, self.dd_brand, self.dd_retailer], alignment=ft.MainAxisAlignment.START)
         self._page.controls.append(row1)
+
+        self._controller.fillDD()
 
         # Row2: inserire btn_top_vendite e btn_analizza_vendite
         self.btn_top_vendite = ft.ElevatedButton(text="Top vendite")

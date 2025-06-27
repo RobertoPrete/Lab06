@@ -15,3 +15,11 @@ class Controller:
             return
         self._view.txt_result.controls.append(ft.Text(f"Hello, {name}!"))
         self._view.update_page()
+
+    def fillDD(self):
+        anni = self._model.getAnni()
+        for anno in anni:
+            self._view.dd_anno.options.append(ft.dropdown.Option(anno))
+
+        brands = self._model.getBrands()
+        retailers = self._model.getRetailers()
