@@ -20,7 +20,7 @@ class Model:
     def getRetailers(self):
         self.listaRetailers = DAO.getRetailers()
 
-    def top_vendite(self, anno, brand, retailer):
+    def top_vendite(self, anno, brand, retailer_code):
         """
         Questo metodo del modello permette di recuperare dal database il top delle vendite (massimo 5) in base ai filtri selezionati nei dropdown di anno, brand e retailer.
         Recupera dati diversi in base ai filtri selezionati e non. Per questo differenziamo le top vendite nel seguente modo:
@@ -29,13 +29,13 @@ class Model:
         TopVendite3: le top vendite date nel caso in cui vengono selezionati tutti i filtri (anno, brand e retailer)
 
         """
-        topVendite = None
-        if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer is None or retailer == "" or retailer == "Nessun filtro"):
+        topVendite = []
+        if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer_code is None or retailer_code == "" or retailer_code == "Nessun filtro"):
             topVendite = DAO.getTopVendite1()
-        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer is None or retailer == "" or retailer == "Nessun filtro"):
+        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer_code is None or retailer_code == "" or retailer_code == "Nessun filtro"):
             topVendite = DAO.getTopVendite2(anno)
-        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer is not None and retailer != "" and retailer != "Nessun filtro"):
-            topVendite = DAO.getTopVendite3(anno, brand, retailer)
+        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer_code is not None and retailer_code != "" and retailer_code != "Nessun filtro"):
+            topVendite = DAO.getTopVendite3(anno, brand, int(retailer_code))
         return topVendite
 
 

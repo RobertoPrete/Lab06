@@ -32,11 +32,16 @@ class Controller:
         for retailer in retailers:
             self._view.dd_retailer.options.append(ft.dropdown.Option(key=retailer.Retailer_code,
                                                                      text=retailer.Retailer_name,
-                                                                     data=retailer,
-                                                                     on_click=self.read_retailer))
+                                                                     data=retailer))
+                                                                     # ,on_click=self.read_retailer))
 
-    def read_retailer(self, e):
-        self._retailer = e.control.data
+
+    def setRetailer(self, e):
+        self._retailer = e.control.value
+        # self._retailer = self._view.dd_retailer.value
+
+    # def read_retailer(self, e):
+        # self._retailer = e.control.data
 
     def read_brand(self, e):
         # self._brand = e.control.data

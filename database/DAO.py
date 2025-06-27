@@ -89,7 +89,7 @@ class DAO:
         return result
 
     @staticmethod
-    def getTopVendite3(anno, brand, retailer):
+    def getTopVendite3(anno, brand, retailer_code):
         conn = DBConnect.get_connection()
         cursor = conn.cursor(dictionary=True)
         query = """select gds.`Date`, (gds.Unit_sale_price*gds.Quantity) as Ricavo, gds.Retailer_code, gds.Product_number
@@ -98,11 +98,11 @@ class DAO:
                     and gp.Product_number=gds.Product_number
                     and year(gds.`Date`)=%s
                     and gp.Product_brand=%s
-                    and gr.Retailer_name=%s
+                    and gr.Retailer_code=%s
                     order by ricavo desc 
                     limit 5"""
         result = []
-        cursor.execute(query, (anno, brand, retailer, ))
+        cursor.execute(query, (anno, brand, retailer_code, ))
         for row in cursor:
             result.append(TopVendita(row["Date"], row["Ricavo"], row["Retailer_code"], row["Product_number"]))
         cursor.close()
@@ -116,5 +116,5 @@ if __name__ == "__main__":
     # print(DAO.getBrands())
     # print(DAO.getTopVendite1())
     # print(DAO.getTopVendite2(2017))
-    print(DAO.getTopVendite3(2017, "Star", "Connor Department Store"))
+    print(DAO.getTopVendite3(2017, "Star", 1216))
 
