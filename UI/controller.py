@@ -33,28 +33,17 @@ class Controller:
             self._view.dd_retailer.options.append(ft.dropdown.Option(key=retailer.Retailer_code,
                                                                      text=retailer.Retailer_name,
                                                                      data=retailer))
-                                                                     # ,on_click=self.read_retailer))
-
 
     def setRetailer(self, e):
         self._retailer = e.control.value
-        # self._retailer = self._view.dd_retailer.value
-
-    # def read_retailer(self, e):
-        # self._retailer = e.control.data
 
     def read_brand(self, e):
-        # self._brand = e.control.data
         self._brand = self._view.dd_brand.value = e.control.value
 
     def read_anno(self, e):
-        # self._anno = e.control.data
         self._anno = self._view.dd_anno.value = e.control.value
 
     def handleTopVendite(self, e):
-        # self._anno = self._view.dd_anno.value
-        # self._brand = self._view.dd_brand.value
-        # self._retailer = self._view.dd_retailer.value
         topvendite = self._model.top_vendite(self._anno, self._brand, self._retailer)
         self._view.txt_result.controls.clear()
         for x in topvendite:
