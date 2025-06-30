@@ -42,8 +42,8 @@ class Model:
         """
         Questo metodo del modello permette di recuperare dal database i dati riguardanti le statistiche delle vendite (compreso i ricavi) in base ai filtri selezionati e non.\n
         Divideremo i dati statistici in due tipi: \n
-        StatisticheVendite1: le statistiche delle vendite derivanti dal fatto di aver selezionato tutti e tre i filtri di anno, brand e retailer.\n
-        StatisticheVendite2: le statistiche delle vendite derivati dal fatto di non aver selezionato nessun filtro di anno, brand e retailer
+        StatisticheVendite1: le statistiche delle vendite derivati dal fatto di non aver selezionato nessun filtro di anno, brand e retailer. \n
+        StatisticheVendite2: le statistiche delle vendite derivanti dal fatto di aver selezionato tutti e tre i filtri di anno, brand e retailer.\n
         :param anno: anno delle vendite
         :param brand: brand delle vendite
         :param retailer_code: il codice che identifica il retailer delle vendite (viene passata come stringa, quindi importante prima di contattare il db fare un parsing per renderlo un intero)
@@ -52,11 +52,26 @@ class Model:
         giro_affari = 0
         numero_vendite = 0
         numero_retailers = 0
+        lista_retailers = []
         numero_prodotti = 0
+        lista_prodotti = []
+        vendite = []
+
         if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer_code is None or retailer_code == "" or retailer_code == "Nessun filtro"):
             vendite = DAO.getStatisticheVendite1()
         elif (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer_code is not None and retailer_code != "" and retailer_code != "Nessun filtro"):
             vendite = DAO.getStatisticheVendite2(anno, brand, int(retailer_code))
+
+        for vendita in vendite:
+            giro_affari = giro_affari + vendita.Ricavo
+            numero_vendite += 1
+            if vendita.Retailer_code not in lista_retailers:
+                lista_retailers.append(vendita.Retailer_code)
+            if vendita.Product_number not in lista_prodotti:
+                lista_prodotti.append(vendita.Product_number)
+        numero_retailers = len(lista_retailers)
+        numero_prodotti = len(lista_prodotti)
+
         return giro_affari, numero_vendite, numero_retailers, numero_prodotti
 
 

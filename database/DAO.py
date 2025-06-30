@@ -111,6 +111,22 @@ class DAO:
         return result
 
     @staticmethod
+    def getStatisticheVendite1():
+        conn = DBConnect.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        query = """select gds.*, (gds.Unit_sale_price*gds.Quantity) as Ricavo
+                    from go_daily_sales gds, go_retailers gr, go_products gp 
+                    where gds.Retailer_code=gr.Retailer_code 
+                    and gp.Product_number=gds.Product_number"""
+        result = []
+        cursor.execute(query)
+        for row in cursor:
+            result.append(StatisticheVendita(**row))
+        cursor.close()
+        conn.close()
+        return result
+
+    @staticmethod
     def getStatisticheVendite2(anno, brand, retailer_code):
         conn = DBConnect.get_connection()
         cursor = conn.cursor(dictionary=True)
