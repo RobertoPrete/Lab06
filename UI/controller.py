@@ -52,6 +52,9 @@ class Controller:
 
     def handleAnalizzaVendite(self, e):
         self._view.txt_result.controls.clear()
+        # Fare il controllo nel caso in cui oltre viene selezionato il filtro dell'anno e solo un filtro tra brand e retailer.
+        # In questo caso mandare un alert per dire di selezionare tutti i filtri o solo il filtro dell'anno
+        
         (giro_affari, numero_vendite, numero_retailer, numero_prodotti) = self._model.analizzaVendite(self._anno, self._brand, self._retailer)
         self._view.txt_result.controls.append(ft.Text("Statistiche vendite:"))
         self._view.txt_result.controls.append(ft.Text(f"Giro d'affari: {giro_affari}"))

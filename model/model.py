@@ -54,9 +54,9 @@ class Model:
         numero_retailers = 0
         numero_prodotti = 0
         if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer_code is None or retailer_code == "" or retailer_code == "Nessun filtro"):
-            pass
-        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer_code is not None and retailer_code != "" and retailer_code != "Nessun filtro"):
-            pass
+            vendite = DAO.getStatisticheVendite1()
+        elif (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer_code is not None and retailer_code != "" and retailer_code != "Nessun filtro"):
+            vendite = DAO.getStatisticheVendite2(anno, brand, int(retailer_code))
         return giro_affari, numero_vendite, numero_retailers, numero_prodotti
 
 
