@@ -38,5 +38,26 @@ class Model:
             topVendite = DAO.getTopVendite3(anno, brand, int(retailer_code))
         return topVendite
 
+    def analizzaVendite(self, anno, brand, retailer_code):
+        """
+        Questo metodo del modello permette di recuperare dal database i dati riguardanti le statistiche delle vendite (compreso i ricavi) in base ai filtri selezionati e non.\n
+        Divideremo i dati statistici in due tipi: \n
+        StatisticheVendite1: le statistiche delle vendite derivanti dal fatto di aver selezionato tutti e tre i filtri di anno, brand e retailer.\n
+        StatisticheVendite2: le statistiche delle vendite derivati dal fatto di non aver selezionato nessun filtro di anno, brand e retailer
+        :param anno: anno delle vendite
+        :param brand: brand delle vendite
+        :param retailer_code: il codice che identifica il retailer delle vendite (viene passata come stringa, quindi importante prima di contattare il db fare un parsing per renderlo un intero)
+        :return: restituisce il giro d'affari (il volume totale dei ricavi, ottenuto dalla somma dei ricavi), il numero di vendite, il numero dei retailer coinvolti e il numero di prodotti coinvolti
+        """
+        giro_affari = 0
+        numero_vendite = 0
+        numero_retailers = 0
+        numero_prodotti = 0
+        if (anno is None or anno == "" or anno == "Nessun filtro") and (brand is None or brand == "" or brand == "Nessun filtro") and (retailer_code is None or retailer_code == "" or retailer_code == "Nessun filtro"):
+            pass
+        if (anno is not None and anno != "" and anno != "Nessun filtro") and (brand is not None and brand != "" and brand != "Nessun filtro") and (retailer_code is not None and retailer_code != "" and retailer_code != "Nessun filtro"):
+            pass
+        return giro_affari, numero_vendite, numero_retailers, numero_prodotti
+
 
 

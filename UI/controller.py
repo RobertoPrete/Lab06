@@ -50,3 +50,15 @@ class Controller:
             self._view.txt_result.controls.append(ft.Text(x.__str__()))
         self._view.update_page()
 
+    def handleAnalizzaVendite(self, e):
+        self._view.txt_result.controls.clear()
+        (giro_affari, numero_vendite, numero_retailer, numero_prodotti) = self._model.analizzaVendite(self._anno, self._brand, self._retailer)
+        self._view.txt_result.controls.append(ft.Text("Statistiche vendite:"))
+        self._view.txt_result.controls.append(ft.Text(f"Giro d'affari: {giro_affari}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero vendite: {numero_vendite}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero retailers coinvolti: {numero_retailer}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero prodotti coinvolti: {numero_prodotti}"))
+        self._view.update_page()
+
+
+
